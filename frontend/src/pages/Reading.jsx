@@ -12,9 +12,9 @@ import beep3 from "../assets/audios/C.mp3";
 import beep4 from "../assets/audios/D.mp3";
 import beep5 from "../assets/audios/E.mp3";
 import beep6 from "../assets/audios/F.mp3";
-import video1 from "../assets/videos/Avid.mp4"
-import video2 from "../assets/videos/Bvid.mp4"
-import video3 from "../assets/videos/Cvid.mp4"
+import video1 from "../assets/videos/Avid.mp4";
+import video2 from "../assets/videos/Bvid.mp4";
+import video3 from "../assets/videos/Cvid.mp4";
 import { useRef, useState } from "react";
 import { AiOutlineSound, AiFillSound } from "react-icons/ai";
 
@@ -59,8 +59,8 @@ const Reading = () => {
   ];
   return (
     <div className="flex flex-col justify-center items-center text-center text-black text-4xl md:text-5xl lg:text-7xl tracking-widest pt-12 bg-[url('/bgreading.png')] bg-cover bg-no-repeat ">
-      <p>Welcome to Reading Materials</p>
-      <div className="grid gap-x-8 gap-y-10 lg:gap-x-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-20 pb-20 ">
+      <p>Welcome to Pratice Materials</p>
+      <div className="grid gap-x-8 gap-y-10 lg:gap-x-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-20 pb-20  ">
         {src.map((item) => (
           <div key={item.id} id={item.id}>
             <AudioButton

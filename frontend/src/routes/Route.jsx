@@ -6,6 +6,12 @@ import Login from "../pages/Login";
 import Reading from "../pages/Reading";
 import Activities from "../pages/Activities";
 import Audio from "../pages/Audio";
+import Phonics from "../pages/Phonics";
+import User from "../pages/User";
+import Signupuser from "../pages/Signupuser";
+import Temporary from "../database/Temporary";
+import EasyShorta from "../easypage/EasyShorta";
+import EasyLonga from "../easypage/EasyLonga";
 
 const pages = [
   {
@@ -17,9 +23,30 @@ const pages = [
     element: <Login />,
   },
   {
+    path: "/user",
+    element: <User />,
+  },
+  {
+    path: "/signupuser",
+    element: <Signupuser />,
+  },
+  {
     path: "/reading",
     element: <Reading />,
   },
+  {
+    path: "phonics",
+    element: <Phonics />,
+  },
+  {
+    path: "easyshorta",
+    element: <EasyShorta />,
+  },
+  {
+    path: "easylonga",
+    element: <EasyLonga />,
+  },
+
   {
     path: "audio",
     element: <Audio />,
@@ -27,6 +54,10 @@ const pages = [
   {
     path: "activities",
     element: <Activities />,
+  },
+  {
+    path: "/temporary",
+    element: <Temporary />,
   },
 ];
 

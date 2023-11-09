@@ -246,12 +246,12 @@ const Contact = () => {
             {/* End Col */}
             <div className="mt-3">
               <p className="text-gray-700">
-                Thanyou for visiting my page{" "}
+                Thanyou for visiting our page{" "}
                 <a
                   className="font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-500 dark:hover:text-blue-400"
                   href="#"
                 >
-                  Wex
+                  
                 </a>{" "}
                 E-learning.
               </p>
