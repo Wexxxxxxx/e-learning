@@ -1,6 +1,7 @@
 const Info = require("../models/infoModel");
 const mongoose = require("mongoose");
 
+// GETT SINGILE INFO
 const getInfo = async (req, res) => {
   const { id } = req.params;
 
@@ -15,6 +16,7 @@ const getInfo = async (req, res) => {
     : res.status(200).json(result);
 };
 
+//  GET ALL INFO
 const getAllInfo = async (req, res) => {
   const result = await Info.find();
 
@@ -23,6 +25,7 @@ const getAllInfo = async (req, res) => {
     : res.status(200).json(result);
 };
 
+//  CREATE INFO
 const createInfo = async (req, res) => {
   const { firstName, lastName, email } = req.body;
 
@@ -31,6 +34,7 @@ const createInfo = async (req, res) => {
   return res.status(200).json(result);
 };
 
+//  UPDATE INFO
 const updateInfo = async (req, res) => {
   const { id } = req.params;
   const { firstName, lastName, email } = req.body;
@@ -44,6 +48,7 @@ const updateInfo = async (req, res) => {
   return res.status(200).json(result);
 };
 
+//  DELETE INFO
 const deleteInfo = async (req, res) => {
   const { id } = req.params;
 

@@ -2,8 +2,9 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const express = require("express");
 const connectDB = require("./src/config/DB");
-const words = require("./src/routes/Words")
+const words = require("./src/routes/Words");
 const infoRoutes = require("./src/routes/info");
+
 dotenv.config();
 
 connectDB();
@@ -23,9 +24,10 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
-app.get("/api/words", words)
+app.use("/api/words", words);
 app.use("/api/info", infoRoutes);
 
+                          
 
 app.get("/", (req, res) => {
   res.status(200).json({

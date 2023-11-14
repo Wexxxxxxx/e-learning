@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
+const AudioSchema = new Schema({
+    link: String,
+    name: String,
 
+}, {_id: false} ) 
 const WordSchema = new Schema({
     word: {
         type: String,
@@ -16,10 +20,7 @@ const WordSchema = new Schema({
         required: true
     },
     audio: {
-        type: {
-            link: String,
-            name: String,
-        },
+        type: AudioSchema,
         required: true
     }
 }, {timestamps: true})
