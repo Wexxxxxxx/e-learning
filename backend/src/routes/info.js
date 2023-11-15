@@ -5,7 +5,7 @@ const {
   createInfo,
   updateInfo,
   deleteInfo,
-} = require("../controllers/infoController");
+} = require("../controllers/InfoController");
 
 const router = express.Router();
 

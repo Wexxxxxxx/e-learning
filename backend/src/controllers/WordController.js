@@ -19,7 +19,6 @@ const GetWordsByRandom = async (req, res) => {
   }
 };
 
-
 //  GET A SINGLE ID
 const GetWordById = async (req, res) => {
   try {
@@ -38,7 +37,6 @@ const GetWordById = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-
 
 // CREATE A WORD
 const CreateWords = async (req, res) => {

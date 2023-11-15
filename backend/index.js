@@ -3,8 +3,8 @@ const cors = require("cors");
 const express = require("express");
 const connectDB = require("./src/config/DB");
 const words = require("./src/routes/Words");
-const infoRoutes = require("./src/routes/info");
-
+const infoRoutes = require("./src/routes/Info");
+const userRoutes = require("./src/routes/User");
 dotenv.config();
 
 connectDB();
@@ -26,6 +26,7 @@ app.use(cors());
 // Routes
 app.use("/api/words", words);
 app.use("/api/info", infoRoutes);
+app.use("/api/user", userRoutes)
 
                           
 
