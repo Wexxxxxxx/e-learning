@@ -20,26 +20,28 @@ const GetUserId = async (req, res) => {
   }
 };
 
-
 //  GET ALL USER
-const GetAllUser = async (req, res) => {
-  const result = await user.find();
+const GetAllUsers = async (req, res) => {
+  try {
+    const result = await user.find();
 
-  return !result
-    ? res.status(400).json({ error: "No such info" })
-    : res.status(200).json(result);
+    return !result
+      ? res.status(400).json({ error: "No such info" })
+      : res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 
-
 //  CREATE USER
-const CreateUser = async (req, res) => {
+const CreateUsers = async (req, res) => {
   try {
     const {
       user_id,
       section,
-      first_name,
-      last_name,
-      middle_name,
+      firstName,
+      middleName,
+      lastName,
       username,
       password,
       email,
@@ -49,9 +51,9 @@ const CreateUser = async (req, res) => {
     console.log(
       user_id,
       section,
-      first_name,
-      last_name,
-      middle_name,
+      firstName,
+      middleName,
+      lastName,
       username,
       password,
       email,
@@ -61,9 +63,9 @@ const CreateUser = async (req, res) => {
     const result = await user.create({
       user_id,
       section,
-      first_name,
-      last_name,
-      middle_name,
+      firstName,
+      middleName,
+      lastName,
       username,
       password,
       email,
@@ -76,8 +78,67 @@ const CreateUser = async (req, res) => {
   }
 };
 
+// DELETE INFO
+const DeleteUsers = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: "No such info" });
+    }
+
+    const result = await user.findOneAndDelete({ _id: id });
+
+    return !result
+      ? res.status(400).json({ error: "No such info" })
+      : res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// UPDATE USERS
+const UpdateUsers = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      user_id,
+      section,
+      firstName,
+      middleName,
+      lastName,
+      username,
+      password,
+      email,
+      type,
+    } = req.body;
+
+    const result = await user.findOneAndUpdate(
+      { _id: id },
+      {
+        user_id,
+        section,
+        firstName,
+        middleName,
+        lastName,
+        username,
+        password,
+        email,
+        type,
+      },
+      { new: true }
+    );
+
+    return res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
-  CreateUser,
+  CreateUsers,
   GetUserId,
-  GetAllUser,
+  GetAllUsers,
+  DeleteUsers,
+  UpdateUsers,
 };

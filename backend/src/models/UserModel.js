@@ -10,15 +10,15 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    first_name: {
+    firstName: {
         type: String,
         required: true,
     },
-    middle_name: {
+    middleName: {
         type: String,
         required: true,
     },
-    last_name: {
+    lastName: {
         type: String,
         required: true,
     },
