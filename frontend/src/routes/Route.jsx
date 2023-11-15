@@ -12,6 +12,7 @@ import Signupuser from "../pages/Signupuser";
 import Temporary from "../database/Temporary";
 import EasyShorta from "../easypage/EasyShorta";
 import EasyLonga from "../easypage/EasyLonga";
+import AddNewStudent from "../pages/AddNewStudent";
 
 const pages = [
   {
@@ -58,6 +59,10 @@ const pages = [
   {
     path: "/temporary",
     element: <Temporary />,
+  },
+  {
+    path: "/addnewstudent",
+    element: <AddNewStudent />,
   },
 ];
 

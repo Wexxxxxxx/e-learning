@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createRef } from "react";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { FaRegEdit } from "react-icons/fa";
 import axios from "axios";
 import API_LINK from "../API";
 
@@ -84,15 +86,37 @@ function Temporary() {
     let time = new Date().toLocaleTimeString();
     setCurrentTime(time);
   };
-
   setInterval(updateTime, 1000);
+
+  let date = new Date().toLocaleDateString();
+  const [currentDate, setCurrentDate] = useState(date);
+
+  const updateDate = () => {
+    let date = new Date().toLocaleDateString();
+    setCurrentDate(date);
+  };
+  setInterval(updateDate, 1000);
 
   return (
     <div className="bg-[url('/official.png')] h-screen bg-cover bg-no-repeat">
-      <div className="flex flex-col justify-center items-center text-center p-2 bg-cyan-600 text-2 text-black tracking-widest">
-        <h1>WELCOME TO OUR DATABASE WE ARE HAPPY TO TEACH YOU {currentTime}</h1>
+      <div className="flex flex-col justify-center items-center text-center ml-[100] p-2 bg-cyan-600 text-2 text-white tracking-widest">
+        <div className="flex flex-row gap-x-8">
+          WELCOME TO OUR DATABASE WE ARE HAPPY TO TEACH YOU
+          <h1 className="bg-amber-200  text-black rounded-md px-3 ">
+            {currentDate} / {currentTime}
+          </h1>
+        </div>
       </div>
-
+      <div className="bg-[url('')] bg-cover rounded-md bg-cyan-500 h-[200px]">
+        <div className="flex flex-col text-align  sm:ml-5 md:ml-5 lg:ml-20 xl:ml-52">
+          <div className="text-2xl md:text-3xl lg:text-4xl text-white font-bold rounded-md uppercase mt-16  sm:mx-20 mx-6   tracking-wider  leading-[2rem]   ">
+            <h1>
+              E – Learning Visualized and Audio <br />
+              Learning Web for Phonetic Reading
+            </h1>
+          </div>
+        </div>
+      </div>
       {/* SIDEBAR  */}
       <div>
         <>
@@ -121,7 +145,7 @@ function Temporary() {
           {/* End Navigation Toggle */}
           <div
             id="docs-sidebar"
-            className="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 start-0 bottom-0 z-[60] w-64 bg-cyan-600 border-e border-gray-200 pt-7 pb-10 overflow-y-auto lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-slate-700 dark:[&::-webkit-scrollbar-thumb]:bg-slate-500 "
+            className="mt-10  mb-10 rounded-md hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 start-0 bottom-0 z-[60] w-64 bg-cyan-600 border-e border-gray-300 pt-7 pb-10 overflow-y-auto lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-slate-700 dark:[&::-webkit-scrollbar-thumb]:bg-slate-500 "
           >
             <div className="px-16">
               <a
@@ -260,144 +284,203 @@ function Temporary() {
         </>
         {/* END OF SIDEBAR */}
 
-        <div className="flex flex-col sm:ml-[20px] sm:mr-[20px] md:ml-[20px] md:mr-[20px] lg:ml-[270px] lg:mr-3 xl:ml-[270px] xl:mr-4 ml-[20px] mr-[20px] mt-52 py-12 px-5 rounded-xl bg-cyan-600">
+        {/* START OF BODY HEADER */}
+        <div className="flex flex-col mt-5  sm:ml-0 md:ml-0 lg:ml-[275px] xl:ml-[280px] px-3 mr-5 py-10 bg-amber-200 md:h-[600px]">
           <div className="-m-1.5 overflow-x-auto">
             <div className="p-1.5 min-w-full inline-block align-middle">
-              <div className="overflow-hidden">
-                <div className="flex-flex-col justify-center items-center py-3  mt-2 rounded-lg  bg-cyan-500 ">
-                  <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                    <thead>
-                      <tr>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                        >
-                          Name
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                        >
-                          Age
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                        >
-                          Address
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
-                        >
-                          Action
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                      <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                          John Brown
+              <div className="overflow-hidden h-[510px]">
+                <table className="min-w-full divide-y-2 border-2 border-black  divide-black ">
+                  <thead>
+                    <tr className="text-black">
+                      <th
+                        scope="col"
+                        className="py-3 border-2  border-black  p-2 flex-1"
+                      >
+                        Student Number
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 border-2  border-black   flex-1"
+                      >
+                        First Name
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 border-2  border-black  flex-1"
+                      >
+                        Last Name
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 border-2  border-black  flex-1"
+                      >
+                        Age
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 border-2  border-black  flex-1"
+                      >
+                        Address
+                      </th>
+                      <th
+                        scope="col"
+                        className="py-3 border-2  border-black  flex-1"
+                      >
+                        Gmail
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="min-w-full text-center border-2 border-black  divide-black  text-black">
+                    {/* FIRST ROW */}
+                    {all.map((item, idx) => (
+                      <tr key={idx}>
+                        <td className="border-2 p-2 border-black">
+                          {item._id}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                          45
+                        <td className="border-2 p-2 border-black">
+                          {item.firstName}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                          New York No. 1 Lake Park
+                        <td className="border-2 p-2 border-black">
+                          {item.lastName}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                          <button
-                            type="button"
-                            className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                        <td className="border-2 p-2 border-black">
+                          {item.age}
+                        </td>
+                        <td className="border-2 p-2 border-black">
+                          {item.address}
+                        </td>
+                        <td className="border-2 p-2 border-black">
+                          {item.email}
+                        </td>
+                        <td className="border-2 p-2 border-black">
+                          <div className="text-center">
+                            <button
+                              type="button"
+                              className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                              data-hs-overlay="#hs-sign-out-alert-small-window"
+                            >
+                              Open modal
+                            </button>
+                          </div>
+                          <div
+                            id="hs-sign-out-alert-small-window"
+                            className="hs-overlay hidden w-full h-full fixed top-0 start-0 z-[60] overflow-x-hidden overflow-y-auto"
                           >
-                            Delete
+                            <div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-xs sm:w-full m-3 sm:mx-auto">
+                              <div className="relative flex flex-col bg-white shadow-lg rounded-xl dark:bg-gray-800">
+                                <div className="absolute top-2 end-2">
+                                  <button
+                                    type="button"
+                                    className="flex justify-center items-center w-7 h-7 text-sm font-semibold rounded-lg border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:border-transparent dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                    data-hs-overlay="#hs-sign-out-alert-small-window"
+                                  >
+                                    <span className="sr-only">Close</span>
+                                    <svg
+                                      className="flex-shrink-0 w-4 h-4"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      width={24}
+                                      height={24}
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeWidth={2}
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                    >
+                                      <path d="M18 6 6 18" />
+                                      <path d="m6 6 12 12" />
+                                    </svg>
+                                  </button>
+                                </div>
+                                <div className="p-4 sm:p-10 text-center overflow-y-auto">
+                                  {/* Icon */}
+                                  <span className="mb-4 inline-flex justify-center items-center w-[62px] h-[62px] rounded-full border-4 border-yellow-50 bg-yellow-100 text-yellow-500 dark:bg-yellow-700 dark:border-yellow-600 dark:text-yellow-100">
+                                    <svg
+                                      className="flex-shrink-0 w-5 h-5"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      width={16}
+                                      height={16}
+                                      fill="currentColor"
+                                      viewBox="0 0 16 16"
+                                    >
+                                      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                    </svg>
+                                  </span>
+                                  {/* End Icon */}
+                                  <h3 className="mb-2 text-2xl font-bold text-gray-800 dark:text-gray-200">
+                                    Sign out
+                                  </h3>
+                                  <p className="text-gray-500">
+                                    Are you sure you would like to sign out of
+                                    your Preline account?
+                                  </p>
+                                  <div className="mt-6 grid gap-y-2">
+                                    <a
+                                      className="py-2.5 px-4 w-full inline-flex justify-center items-center gap-2 rounded-lg border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
+                                      href="#"
+                                    >
+                                      Sign out
+                                    </a>
+                                    <button
+                                      type="button"
+                                      className="py-2.5 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                      data-hs-overlay="#hs-sign-out-alert-small-window"
+                                    >
+                                      Cancel
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            id="hs-sign-out-alert-small-window"
+                            className="hs-overlay hidden w-full h-full fixed top-0 start-0 z-[60] overflow-x-hidden overflow-y-auto"
+                          >
+                            <div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-xs sm:w-full m-3 sm:mx-auto">
+                              <div className="relative flex flex-col bg-white shadow-lg rounded-xl dark:bg-gray-800">
+                                <div className="absolute top-2 end-2">
+                                  <button
+                                    type="button"
+                                    className="flex justify-center items-center w-7 h-7 text-sm font-semibold rounded-lg border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:border-transparent dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                    data-hs-overlay="#hs-sign-out-alert-small-window"
+                                  > 
+                                    <span className="sr-only">Close</span>
+                                    <svg
+                                      className="flex-shrink-0 w-4 h-4"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      width={24}
+                                      height={24}
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeWidth={2}
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                    >
+                                      <path d="M18 6 6 18" />
+                                      <path d="m6 6 12 12" />
+                                    </svg>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="border-2 p-2 border-black">
+                          <button className="bg-red-600 hover:bg-red-500 rounded-md text-white p-2">
+                            <RiDeleteBin6Line></RiDeleteBin6Line>
                           </button>
                         </td>
                       </tr>
-                      <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                          Jim Green
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                          27
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                          London No. 1 Lake Park
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                          <button
-                            type="button"
-                            className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                      <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                          Joe Black
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                          31
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                          Sidney No. 1 Lake Park
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                          <button
-                            type="button"
-                            className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                      <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                          Edward King
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                          16
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                          LA No. 1 Lake Park
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                          <button
-                            type="button"
-                            className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                      <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                          Jim Red
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                          45
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                          Melbourne No. 1 Lake Park
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                          <button
-                            type="button"
-                            className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
-        {/* END OF TABLE */}
+        {/* END OF BODY HEADER */}
       </div>
     </div>
   );

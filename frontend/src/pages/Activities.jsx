@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -30,9 +29,9 @@ const Activities = () => {
       (phoneme, index) => phoneme === referencePhonemes[index]
     );
 
-    const accuracy = correctPhonemes.length / phonemes.length;
+    const accuracy = (correctPhonemes.length / phonemes.length) * 100;
 
-    return accuracy * 100;
+    return accuracy;
   };
 
   const handleListen = () => {
@@ -56,19 +55,22 @@ const Activities = () => {
       const transcript = Array.from(event.results)
         .map((result) => result[0])
         .map((result) => result.transcript)
-        .join("");
+        .join(" ");
       console.log(transcript);
       setNote(transcript);
 
       // Calculate accuracy
       const trueTranscript = ["app", "banana", "cherry"];
-      const accuracy =
-        calculatePronunciationAccuracy(transcript, referencePronunciation) * 90;
+      const accuracy = calculatePronunciationAccuracy(
+        transcript,
+        trueTranscript.join(" ")
+      );
 
       setAccuracy(accuracy);
 
       // Check if the word is spoken correctly
-      if (transcript == trueTranscript) {
+      const isCorrect = arraysEqual(phonemes, trueTranscript);
+      if (isCorrect) {
         setAccuracy(95);
         console.log("The word is spoken correctly!");
       } else {
@@ -84,6 +86,13 @@ const Activities = () => {
   const handleSavenNote = () => {
     setsavedNotes([...savedNotes, note]);
     setNote("");
+  };
+
+  const arraysEqual = (arr1, arr2) => {
+    return (
+      arr1.length === arr2.length &&
+      arr1.every((value, index) => value === arr2[index])
+    );
   };
 
   return (
