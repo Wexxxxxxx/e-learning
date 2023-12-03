@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Info = require("../models/InfoModel");
 
-
 // GETT SINGILE INFO
 const getInfo = async (req, res) => {
   try {
@@ -57,11 +56,11 @@ const createInfo = async (req, res) => {
 const updateInfo = async (req, res) => {
   try {
     const { id } = req.params;
-    const { firstName, lastName, Age, Address, email } = req.body;
+    const { firstName, lastName, age, address, email } = req.body;
 
     const result = await Info.findOneAndUpdate(
       { _id: id },
-      { firstName, lastName, Age, Address, email },
+      { firstName, lastName, age, address, email },
       { new: true }
     );
 

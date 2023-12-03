@@ -3,7 +3,7 @@ const Word = require("../models/WordModel");
 
 const GetWordsByRandom = async (req, res) => {
   try {
-    const result = Word.aggregate([{ $sample: { size: 10 } }]);
+    const result = Word.aggregate([{ $sample: { size: 12 } }]);
     let output = [];
     for await (const item of result) {
       output.push(item);

@@ -1,6 +1,5 @@
-const mongoose = require('mongoose')
-
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const infoSchema = new Schema({
     firstName: {
@@ -11,6 +10,10 @@ const infoSchema = new Schema({
         type: String,
         required: true,
     },
+    // birthDate: {
+    //     type: Date,
+    //     required: true,
+    // },
     age: {
         type: Number,
         required: true,
@@ -25,4 +28,4 @@ const infoSchema = new Schema({
     },
 }, {timestamps: true});
 
-module.exports = mongoose.model("Info", infoSchema)
+module.exports = mongoose.model("info", infoSchema)

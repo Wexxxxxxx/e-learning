@@ -1,13 +1,13 @@
 const express = require("express");
+const router = express.Router();
+
 const {
   getInfo,
   getAllInfo,
   createInfo,
   updateInfo,
   deleteInfo,
-} = require("../controllers/InfoController");
-
-const router = express.Router();
+} = require("../controllers/infoController");
 
 router.get("/", getAllInfo);
 router.get("/:id", getInfo);

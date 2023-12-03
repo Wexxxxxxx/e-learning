@@ -4,7 +4,10 @@ const express = require("express");
 const connectDB = require("./src/config/DB");
 const words = require("./src/routes/Words");
 const infoRoutes = require("./src/routes/Info");
-const userRoutes = require("./src/routes/User");
+const userRoutes = require("./src/routes/user");
+const loginRoutes = require("./src/routes/Login");
+const quizRoutes = require("./src/routes/Quiz");
+
 dotenv.config();
 
 connectDB();
@@ -26,9 +29,9 @@ app.use(cors());
 // Routes
 app.use("/api/words", words);
 app.use("/api/info", infoRoutes);
-app.use("/api/user", userRoutes)
-
-                          
+app.use("/api/user", userRoutes);
+app.use("/api/login", loginRoutes)
+app.use("/api/quiz", quizRoutes)
 
 app.get("/", (req, res) => {
   res.status(200).json({
