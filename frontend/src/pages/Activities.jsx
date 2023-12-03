@@ -4,13 +4,13 @@ const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 const mic = new SpeechRecognition();
 
-mic.continuous = true;
+mic.continuous = false; // Set to false to stop after one word
 mic.interimResults = true;
 mic.lang = "en-US";
 
 const Activities = () => {
   const [isListening, setIsListening] = useState(false);
-  const [note, setNote] = useState(null);
+  const [note, setNote] = useState("");
   const [accuracy, setAccuracy] = useState(0);
   const [savedNotes, setsavedNotes] = useState([]);
 
@@ -20,16 +20,16 @@ const Activities = () => {
 
   const calculatePronunciationAccuracy = (
     transcript,
-    referencePronunciation
+    referenceWord
   ) => {
-    const phonemes = transcript.split(" ");
-    const referencePhonemes = referencePronunciation.split(" ");
+    const reference = referenceWord.toLowerCase();
+    const spoken = transcript.toLowerCase();
 
-    const correctPhonemes = phonemes.filter(
-      (phoneme, index) => phoneme === referencePhonemes[index]
-    );
+    const correctCharacters = spoken
+      .split("")
+      .filter((char, index) => char === reference[index]);
 
-    const accuracy = (correctPhonemes.length / phonemes.length) * 100;
+    const accuracy = (correctCharacters.length / reference.length) * 100;
 
     return accuracy;
   };
@@ -37,62 +37,58 @@ const Activities = () => {
   const handleListen = () => {
     if (isListening) {
       mic.start();
-      mic.onend = () => {
-        console.log("Stopped Mic on End");
-      };
     } else {
       mic.stop();
-      mic.onend = () => {
-        console.log("Stopped Mic on Click");
-        handleSavenNote();
-      };
+      handleSaveNote();
     }
+
     mic.onstart = () => {
       console.log("Mics on");
+    };
+
+    mic.onend = () => {
+      console.log("Stopped Mic");
+      // Start mic again if still in listening mode
+      if (isListening) {
+        mic.start();
+      }
     };
 
     mic.onresult = (event) => {
       const transcript = Array.from(event.results)
         .map((result) => result[0])
         .map((result) => result.transcript)
-        .join(" ");
+        .join(" ")
+        .trim();
+
       console.log(transcript);
       setNote(transcript);
 
       // Calculate accuracy
-      const trueTranscript = ["app", "banana", "cherry"];
-      const accuracy = calculatePronunciationAccuracy(
-        transcript,
-        trueTranscript.join(" ")
-      );
-
+      const trueWord = "App" // Change to your reference word
+      const accuracy = calculatePronunciationAccuracy(transcript, trueWord);
       setAccuracy(accuracy);
 
       // Check if the word is spoken correctly
-      const isCorrect = arraysEqual(phonemes, trueTranscript);
+      const isCorrect = transcript.toLowerCase() === trueWord.toLowerCase();
       if (isCorrect) {
-        setAccuracy(95);
         console.log("The word is spoken correctly!");
       } else {
         console.log("The word is spoken incorrectly.");
       }
 
-      mic.onerror = (event) => {
-        console.log(event.error);
-      };
+      // Stop listening after one word
+      setIsListening(false);
+    };
+
+    mic.onerror = (event) => {
+      console.log(event.error);
     };
   };
 
-  const handleSavenNote = () => {
+  const handleSaveNote = () => {
     setsavedNotes([...savedNotes, note]);
     setNote("");
-  };
-
-  const arraysEqual = (arr1, arr2) => {
-    return (
-      arr1.length === arr2.length &&
-      arr1.every((value, index) => value === arr2[index])
-    );
   };
 
   return (
@@ -104,7 +100,7 @@ const Activities = () => {
       >
         {isListening ? <span>🎙️Stop</span> : <span>🛑Start</span>}
       </button>
-      <p className=" w-300 overflow-hidden whitespace-nowrap overflow-ellipsis border border-gray-300">
+      <p className="w-300 overflow-hidden whitespace-nowrap overflow-ellipsis border border-gray-300">
         {note}
       </p>
       <div className="text-green-500 font-bold mb-2">

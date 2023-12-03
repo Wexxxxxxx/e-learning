@@ -8,7 +8,7 @@ const About = () => {
   return (
     <div
       id="about"
-      className="flex flex-col items-center justify-center text-center bg-orange-100 "
+      className="flex flex-col items-center justify-center text-center xl:h-screen bg-orange-100 "
     >
       <div className="text-black text-4xl uppercase font-bold text-center leading-[4rem] md:text-5xl xl:text-7xl md:p-5 md:tracking-wide  md:leading-12 md:text-center md:px-3 xl:pt-12 md:pt-5">
         <p>Welcome to Menu</p>
@@ -28,7 +28,7 @@ const About = () => {
             className="shadow-lg rounded-b-[550%] rounded-t-[70%]"
           />
           <div className="flex flex-col items-center justify center space-y-12 h-44 py-3 ">
-            <p>PRACTICEC MATERIALS </p>
+            <p>BOOK MATERIALS </p>
             <p>Come on, Let's Read a book!</p>
             <Link
               to="/reading"

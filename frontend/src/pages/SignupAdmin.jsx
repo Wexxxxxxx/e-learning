@@ -2,7 +2,7 @@ import logo from "../assets/img/logo.png";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 
-const Signupuser = () => {
+const SignupAdmin = () => {
   const [formData, setFormData] = useState({
     user_id: "",
     section: "",
@@ -18,15 +18,16 @@ const Signupuser = () => {
     event.preventDefault();
     const obj = {
       user_id: formData.user_id,
-      section: formData.section,
+      section: "Teacher",
       firstName: formData.firstName,
       middleName: formData.middleName,
       lastName: formData.lastName,
       username: formData.username,
       password: formData.password,
       email: formData.email,
-      type: "client",
+      type: "Admin",
     };
+    console.log(obj);
     try {
       const response = await fetch("http://localhost:8800/api/user", {
         method: "POST",
@@ -36,7 +37,6 @@ const Signupuser = () => {
         body: JSON.stringify(obj),
       });
       console.log(response);
-
       if (response.ok) {
         console.log("User created successfully");
         // Redirect or perform other actions as needed
@@ -57,7 +57,7 @@ const Signupuser = () => {
   };
 
   return (
-    <section className="bg-[url('/background2.png')]  sm:h-screen   bg-no-repeat bg-cover">
+    <section className="bg-[url('/background2.png')]  h-screen bg-no-repeat bg-cover">
       <>
         <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
           <div className="max-w-xl mx-auto">
@@ -67,18 +67,16 @@ const Signupuser = () => {
                 onSubmit={handleSubmit}
               >
                 <div className="flex flex-col">
-                  <h1 className="text-white text-3xl uppercase">
-                    Sign up your account
-                  </h1>
+                  <h1 className="text-white text-2xl">Sign up your account</h1>
                 </div>
                 <div className="grid gap-4 lg:gap-6 pt-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                     <div>
                       <label
                         htmlFor="user_id"
-                        className="block text-md uppercase text-white p-2"
+                        className="block text-sm text-gray-700 font-medium dark:text-white"
                       >
-                        Student Number
+                        Employee ID
                       </label>
                       <input
                         type="text"
@@ -91,26 +89,8 @@ const Signupuser = () => {
                     </div>
                     <div>
                       <label
-                        htmlFor="section"
-                        className="block text-md uppercase text-white p-2"
-                      >
-                        Section
-                      </label>
-                      <input
-                        type="text"
-                        name="section"
-                        id="section"
-                        value={formData.section}
-                        onChange={handleChange}
-                        className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm text-black"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
-                    <div>
-                      <label
                         htmlFor="firstName"
-                        className="block text-md uppercase text-white p-2"
+                        className="block text-sm text-gray-700 font-medium dark:text-white"
                       >
                         First Name
                       </label>
@@ -123,10 +103,12 @@ const Signupuser = () => {
                         className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm text-black"
                       />
                     </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                     <div>
                       <label
                         htmlFor="middleName"
-                        className="block text-md uppercase text-white p-2"
+                        className="block text-sm text-gray-700 font-medium dark:text-white"
                       >
                         Middle Name
                       </label>
@@ -142,7 +124,7 @@ const Signupuser = () => {
                     <div>
                       <label
                         htmlFor="lastName"
-                        className="block text-md uppercase text-white p-2"
+                        className="block text-sm text-gray-700 font-medium dark:text-white"
                       >
                         Last Name
                       </label>
@@ -158,7 +140,7 @@ const Signupuser = () => {
                     <div>
                       <label
                         htmlFor="username"
-                        className="block text-md uppercase text-white p-2"
+                        className="block text-sm text-gray-700 font-medium dark:text-white"
                       >
                         Username
                       </label>
@@ -171,12 +153,10 @@ const Signupuser = () => {
                         className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm text-black"
                       />
                     </div>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                     <div>
                       <label
                         htmlFor="password"
-                        className="block text-md uppercase text-white p-2"
+                        className="block text-sm text-gray-700 font-medium dark:text-white"
                       >
                         Password
                       </label>
@@ -189,10 +169,12 @@ const Signupuser = () => {
                         className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm text-black"
                       />
                     </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                     <div>
                       <label
                         htmlFor="email"
-                        className="block text-md uppercase text-white p-2"
+                        className="block text-sm text-gray-700 font-medium dark:text-white"
                       >
                         Gmail
                       </label>
@@ -208,7 +190,7 @@ const Signupuser = () => {
                     </div>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 pt-3 mt-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 pt-3">
                   <button
                     type="submit"
                     onClick={handleSubmit}
@@ -232,4 +214,4 @@ const Signupuser = () => {
   );
 };
 
-export default Signupuser;
+export default SignupAdmin;

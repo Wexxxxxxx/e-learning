@@ -19,8 +19,8 @@ const User = () => {
               OR
             </div>
             <Link
-              to="/temporary"
-              href="/temporary"
+              to="/signupadmin"
+              href="/signupadmin"
               className="bg-amber-500 hover:bg-amber-600 px-14 py-4 rounded-lg"
             >
               ADMIN

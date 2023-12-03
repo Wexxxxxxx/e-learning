@@ -13,6 +13,7 @@ import Temporary from "../database/Temporary";
 import EasyShorta from "../easypage/EasyShorta";
 import EasyLonga from "../easypage/EasyLonga";
 import AddNewStudent from "../pages/AddNewStudent";
+import SignupAdmin from "../pages/SignupAdmin";
 
 const pages = [
   {
@@ -26,6 +27,10 @@ const pages = [
   {
     path: "/user",
     element: <User />,
+  },
+  {
+    path: "signupadmin",
+    element: <SignupAdmin/>,
   },
   {
     path: "/signupuser",

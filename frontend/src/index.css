@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 
+
 :root {
-  font-family:  'Acme', sans-serif  ;
+  font-family:  'Comic Neue',  cursive  ;
   line-height: 1.5;
   font-weight: 400;
   scroll-behavior: smooth;

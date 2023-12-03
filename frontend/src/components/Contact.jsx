@@ -8,7 +8,7 @@ const Contact = () => {
       {/* Hire Us */}
       <div
         id="contact"
-        className="flex flex-row justify-center items-center w-full px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto bg-orange-50"
+        className="flex flex-row justify-center items-center w-full px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto lg:h-screen bg-orange-50"
       >
         {/* Grid */}
         <div className="max-w-[85rem] ">
