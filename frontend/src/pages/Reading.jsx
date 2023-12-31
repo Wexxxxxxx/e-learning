@@ -93,7 +93,7 @@ const Reading = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-[url('/bgreading.png')] bg-no-repeat bg-cover shadow-lg pb-32"
+      className="bg-[url('/bgreading.png')] bg-no-repeat bg-cover shadow-lg pb-32 "
     >
       <div className="flex flex-col justify-center items-center text-center">
         <div className="p-10 text-2xl md:text-3xl lg:text-5xl xl:text-7xl px-20 rounded-l-[50%] rounded-r-[50%] tracking-widest font-bold bg-gradient-to-br from-teal-500 via-sky-400 to-sky-700">

@@ -59,7 +59,7 @@ const SignupAdmin = () => {
   return (
     <section className="bg-[url('/background2.png')]  h-screen bg-no-repeat bg-cover">
       <>
-        <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+        <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-10 lg:py-14 mx-auto">
           <div className="max-w-xl mx-auto">
             <div className="mt-12">
               <form
@@ -70,7 +70,7 @@ const SignupAdmin = () => {
                   <h1 className="text-white text-2xl">Sign up your account</h1>
                 </div>
                 <div className="grid gap-4 lg:gap-6 pt-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-10">
                     <div>
                       <label
                         htmlFor="user_id"

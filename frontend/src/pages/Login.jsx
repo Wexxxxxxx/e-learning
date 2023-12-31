@@ -1,49 +1,52 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '../assets/img/logo.png';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../assets/img/logo.png";
 import axios from "axios";
 const Login = () => {
   const [login, setLogin] = useState({
     username: "",
     password: "",
-  })
+  });
 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setLogin((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
-    }))
-  }
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
-      const response = await axios.get(`http://localhost:8800/api/login/?username=${login.username}&password=${login.password}`,
+      const response = await axios.get(
+        `http://localhost:8800/api/login/?username=${login.username}&password=${login.password}`
       );
-      
+
       if (response.status === 200) {
         // If authentication succeeds, navigate to the desired page
-        if(response.data[0].type === 'Admin'){
-          navigate('/temporary');
-        }else
-        {
-          navigate('/activities');
+        if (response.data[0].type === "Admin") {
+          navigate("/temporary");
+        } else {
+          navigate("/activities");
         }
       } else {
-        console.error('Invalid credentials');
+        console.error("Invalid credentials");
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
   return (
     <section className="bg-[url('/background2.png')] h-screen bg-no-repeat bg-cover">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+        <a
+          href="#"
+          className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+        >
           <img className="w-full h-28  mr-2" src={logo} alt="logo" />
         </a>
         <div className="w-full  rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0  bg-cyan-600 dark:border-gray-700">
@@ -51,7 +54,7 @@ const Login = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Sign in to your account
             </h1>
-            <form className="space-y-4 md:space-y-6" >
+            <form className="space-y-4 md:space-y-6">
               <div>
                 <label
                   htmlFor="username"
@@ -96,7 +99,7 @@ const Login = () => {
               </div>
               <button
                 type="submit"
-                  onClick={handleSubmit}
+                onClick={handleSubmit}
                 className="w-full text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-green-500 hover:bg-green-600"
               >
                 Login
@@ -109,7 +112,7 @@ const Login = () => {
                 Return
               </Link>
               <p className="text-sm font-light text-white">
-                Don’t have an account yet?{' '}
+                Don’t have an account yet?{" "}
                 <Link
                   to="/user"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"

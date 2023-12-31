@@ -14,6 +14,15 @@ import EasyShorta from "../easypage/EasyShorta";
 import EasyLonga from "../easypage/EasyLonga";
 import AddNewStudent from "../pages/AddNewStudent";
 import SignupAdmin from "../pages/SignupAdmin";
+import ActivityContents from "../pages/ActivityContents";
+import About from "../components/About";
+import LevelMap from "../pages/LevelMap";
+import RoadmapLevel from "../pages/RoadmapLevel";
+import Tropical from "../Stages/Tropical";
+import Ice from "../Stages/Ice";
+import Lava from "../Stages/Lava";
+import Space from "../Stages/Space";
+import IceLevel from "../Levels/IceLevel";
 
 const pages = [
   {
@@ -30,7 +39,7 @@ const pages = [
   },
   {
     path: "signupadmin",
-    element: <SignupAdmin/>,
+    element: <SignupAdmin />,
   },
   {
     path: "/signupuser",
@@ -68,6 +77,43 @@ const pages = [
   {
     path: "/addnewstudent",
     element: <AddNewStudent />,
+  },
+
+  {
+    path: "activitycontents",
+    element: <ActivityContents />,
+  },
+  {
+    path: "about",
+    element: <About />,
+  },
+  {
+    path: "levelmap",
+    element: <LevelMap />,
+  },
+  {
+    path: "roadmaplevel",
+    element: <RoadmapLevel />,
+  },
+  {
+    path: "tropical",
+    element: <Tropical />,
+  },
+  {
+    path: "ice",
+    element: <Ice />,
+  },
+  {
+    path: "lava",
+    element: <Lava />,
+  },
+  {
+    path: "space",
+    element: <Space />,
+  },
+  {
+    path: "icelevel",
+    element: <IceLevel />,
   },
 ];
 
