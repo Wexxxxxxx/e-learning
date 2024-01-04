@@ -5,7 +5,7 @@ const IceLevel = () => {
   const location = useLocation();
   // console.log(location.state.item.item);
   const { item } = location.state.item;
-  // console.log(item)
+  console.log(item)
   return (
     <div>
       <p>{item.id}</p>

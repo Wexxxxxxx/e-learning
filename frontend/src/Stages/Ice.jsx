@@ -61,7 +61,7 @@ const Ice = () => {
   //   const SlideItem = ({ slide }) => <div className="item"> {slide} </div>;
 
   return (
-    <div className="m-10 bg-[url('/Ice.png')] bg-cover bg-no-repeat">
+    <div className=" bg-[url('/Ice.png')] bg-cover bg-no-repeat">
       {/* <FaArrowLeft className="leftBtn" onClick={leftHandle} />
       <FaArrowRight className="rightBtn" onClick={rightHandle} /> */}
       <h1 className="mb-10 text-center font-bold text-5xl">Ice Island</h1>
